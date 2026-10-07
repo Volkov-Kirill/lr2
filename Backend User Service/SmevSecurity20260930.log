@@ -1,0 +1,586 @@
+2026-09-30 08:10:46.784 +07:00 [ERR] Ошибка при инициализации бд
+Npgsql.PostgresException (0x80004005): 3D000: ���� ������ "UserSecurityDb" �� ����������
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|233_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|215_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at TrainingManagerSecurity.Autentication.Logic.RolesStore.RoleInitializer.InitializeAsync(RoleManager`1 roleManager) in C:\Git\TrainingManagerSecurity\TrainingManagerSecurity.Autentication\Logic\RolesStore\RoleInitializer.cs:line 26
+   at TrainingManagerSecurity.Program.Main(String[] args) in C:\Git\TrainingManagerSecurity\TrainingManagerSecurity\Program.cs:line 27
+  Exception data:
+    Severity: �����
+    SqlState: 3D000
+    MessageText: ���� ������ "UserSecurityDb" �� ����������
+    File: postinit.c
+    Line: 1034
+    Routine: InitPostgres
+2026-09-30 08:10:46.841 +07:00 [INF] User profile is available. Using 'C:\Users\239RPO1\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-09-30 08:10:47.250 +07:00 [INF] Executed DbCommand (83ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE DATABASE "UserSecurityDb";
+2026-09-30 08:10:47.344 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetMigrationHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK_AspNetMigrationHistory" PRIMARY KEY ("MigrationId")
+);
+2026-09-30 08:10:47.373 +07:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='AspNetMigrationHistory');
+2026-09-30 08:10:47.378 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "AspNetMigrationHistory"
+ORDER BY "MigrationId";
+2026-09-30 08:10:47.388 +07:00 [INF] Applying migration '20230410073701_InitMigration'.
+2026-09-30 08:10:47.431 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoles" (
+    "Id" text NOT NULL,
+    "Name" character varying(256) NULL,
+    "NormalizedName" character varying(256) NULL,
+    "ConcurrencyStamp" text NULL,
+    CONSTRAINT "PK_AspNetRoles" PRIMARY KEY ("Id")
+);
+2026-09-30 08:10:47.434 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUsers" (
+    "Id" text NOT NULL,
+    "FirstName" text NOT NULL,
+    "MiddleName" text NOT NULL,
+    "Surname" text NOT NULL,
+    "CertificateFrom" timestamp with time zone NULL,
+    "CertificateTo" timestamp with time zone NULL,
+    "OwnRequests" boolean NOT NULL,
+    "Notifications" integer NOT NULL,
+    "FromAD" boolean NOT NULL,
+    "Archive" boolean NOT NULL,
+    "Blocked" boolean NOT NULL,
+    "CreatedDatetime" timestamp with time zone NULL,
+    "LastUpdateDatetime" timestamp with time zone NULL,
+    "LastPasswordChangeDatetime" timestamp with time zone NULL,
+    "LastLoginDatetime" timestamp with time zone NULL,
+    "UserName" character varying(256) NULL,
+    "NormalizedUserName" character varying(256) NULL,
+    "Email" character varying(256) NULL,
+    "NormalizedEmail" character varying(256) NULL,
+    "EmailConfirmed" boolean NOT NULL,
+    "PasswordHash" text NULL,
+    "SecurityStamp" text NULL,
+    "ConcurrencyStamp" text NULL,
+    "PhoneNumber" text NULL,
+    "PhoneNumberConfirmed" boolean NOT NULL,
+    "TwoFactorEnabled" boolean NOT NULL,
+    "LockoutEnd" timestamp with time zone NULL,
+    "LockoutEnabled" boolean NOT NULL,
+    "AccessFailedCount" integer NOT NULL,
+    CONSTRAINT "PK_AspNetUsers" PRIMARY KEY ("Id")
+);
+2026-09-30 08:10:47.437 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "LoginUsers" (
+    "Id" uuid NOT NULL,
+    "DateTime" timestamp with time zone NOT NULL,
+    "LoginResult" integer NOT NULL,
+    "UserName" text NOT NULL,
+    CONSTRAINT "PK_LoginUsers" PRIMARY KEY ("Id")
+);
+2026-09-30 08:10:47.439 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Organizations" (
+    "Id" uuid NOT NULL,
+    "FullTitle" text NOT NULL,
+    "ShortTitle" text NOT NULL,
+    "OrganizationStructType" integer NOT NULL,
+    "Email" text NOT NULL,
+    "Phone" text NOT NULL,
+    "Address" text NOT NULL,
+    "INN" text NOT NULL,
+    "KPP" text NOT NULL,
+    "IsArchive" boolean NOT NULL,
+    CONSTRAINT "PK_Organizations" PRIMARY KEY ("Id")
+);
+2026-09-30 08:10:47.441 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Settings" (
+    "Name" text NOT NULL,
+    "Value" text NOT NULL,
+    "Description" text NOT NULL,
+    CONSTRAINT "PK_Settings" PRIMARY KEY ("Name")
+);
+2026-09-30 08:10:47.447 +07:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoleClaims" (
+    "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+    "RoleId" text NOT NULL,
+    "ClaimType" text NULL,
+    "ClaimValue" text NULL,
+    CONSTRAINT "PK_AspNetRoleClaims" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.450 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserClaims" (
+    "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+    "UserId" text NOT NULL,
+    "ClaimType" text NULL,
+    "ClaimValue" text NULL,
+    CONSTRAINT "PK_AspNetUserClaims" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_AspNetUserClaims_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.452 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserLogins" (
+    "LoginProvider" text NOT NULL,
+    "ProviderKey" text NOT NULL,
+    "ProviderDisplayName" text NULL,
+    "UserId" text NOT NULL,
+    CONSTRAINT "PK_AspNetUserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey"),
+    CONSTRAINT "FK_AspNetUserLogins_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.454 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserRoles" (
+    "UserId" text NOT NULL,
+    "RoleId" text NOT NULL,
+    CONSTRAINT "PK_AspNetUserRoles" PRIMARY KEY ("UserId", "RoleId"),
+    CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_AspNetUserRoles_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.457 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserTokens" (
+    "UserId" text NOT NULL,
+    "LoginProvider" text NOT NULL,
+    "Name" text NOT NULL,
+    "Value" text NULL,
+    CONSTRAINT "PK_AspNetUserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name"),
+    CONSTRAINT "FK_AspNetUserTokens_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.461 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Departments" (
+    "Id" uuid NOT NULL,
+    "ParentDepartmentId" uuid NOT NULL,
+    "ParentOrganizationId" uuid NOT NULL,
+    "FullTitle" text NOT NULL,
+    "ShortTitle" text NOT NULL,
+    "DepartmentType" integer NOT NULL,
+    "Email" text NOT NULL,
+    "Phone" text NOT NULL,
+    "Address" text NOT NULL,
+    "IsArchive" boolean NOT NULL,
+    "HeadDepartmentId" uuid NOT NULL,
+    CONSTRAINT "PK_Departments" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Departments_Departments_HeadDepartmentId" FOREIGN KEY ("HeadDepartmentId") REFERENCES "Departments" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_Departments_Departments_ParentDepartmentId" FOREIGN KEY ("ParentDepartmentId") REFERENCES "Departments" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_Departments_Organizations_ParentOrganizationId" FOREIGN KEY ("ParentOrganizationId") REFERENCES "Organizations" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.465 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Employees" (
+    "Id" uuid NOT NULL,
+    "UsrId" uuid NOT NULL,
+    "OrgId" uuid NOT NULL,
+    "DepartmentId" uuid NOT NULL,
+    "OrganizationId" uuid NOT NULL,
+    "UserId" text NULL,
+    "IsDepartmentHead" boolean NOT NULL,
+    "IsOrganizationHead" boolean NOT NULL,
+    CONSTRAINT "PK_Employees" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Employees_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id"),
+    CONSTRAINT "FK_Employees_Departments_DepartmentId" FOREIGN KEY ("DepartmentId") REFERENCES "Departments" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_Employees_Organizations_OrganizationId" FOREIGN KEY ("OrganizationId") REFERENCES "Organizations" ("Id") ON DELETE CASCADE
+);
+2026-09-30 08:10:47.467 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('LackOfActivityDay', 'Срок отуствия активности', '40');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordActivityDay', 'Срок действия пароля', '185');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordActualityCheckDelay', 'Период провервки актуальности пароля у пользователей', '43200000');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordCountError', 'Количество попыток входа до блокировки пользователя', '3');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordIsLowercases', 'Обязательное использование строчных букв', 'true');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordIsNumbers', 'Обязательное использование цифр', 'true');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordIsSymbols', 'Обязательное использование символов', 'false');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordIsUpperCases', 'Обязательное использование прописных букв', 'false');
+INSERT INTO "Settings" ("Name", "Description", "Value")
+VALUES ('PasswordMinimumLength', 'Количество попыток входа до блокировки пользователя', '10');
+2026-09-30 08:10:47.470 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetRoleClaims_RoleId" ON "AspNetRoleClaims" ("RoleId");
+2026-09-30 08:10:47.472 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "RoleNameIndex" ON "AspNetRoles" ("NormalizedName");
+2026-09-30 08:10:47.473 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserClaims_UserId" ON "AspNetUserClaims" ("UserId");
+2026-09-30 08:10:47.475 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserLogins_UserId" ON "AspNetUserLogins" ("UserId");
+2026-09-30 08:10:47.479 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserRoles_RoleId" ON "AspNetUserRoles" ("RoleId");
+2026-09-30 08:10:47.481 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "EmailIndex" ON "AspNetUsers" ("NormalizedEmail");
+2026-09-30 08:10:47.482 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "UserNameIndex" ON "AspNetUsers" ("NormalizedUserName");
+2026-09-30 08:10:47.483 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Departments_HeadDepartmentId" ON "Departments" ("HeadDepartmentId");
+2026-09-30 08:10:47.485 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Departments_ParentDepartmentId" ON "Departments" ("ParentDepartmentId");
+2026-09-30 08:10:47.486 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Departments_ParentOrganizationId" ON "Departments" ("ParentOrganizationId");
+2026-09-30 08:10:47.487 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Employees_DepartmentId" ON "Employees" ("DepartmentId");
+2026-09-30 08:10:47.489 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Employees_OrganizationId" ON "Employees" ("OrganizationId");
+2026-09-30 08:10:47.490 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Employees_UserId" ON "Employees" ("UserId");
+2026-09-30 08:10:47.495 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Employees_UsrId_OrgId" ON "Employees" ("UsrId", "OrgId");
+2026-09-30 08:10:47.497 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetMigrationHistory" ("MigrationId", "ProductVersion")
+VALUES ('20230410073701_InitMigration', '7.0.4');
+2026-09-30 08:10:47.735 +07:00 [INF] Now listening on: http://[::]:8000
+2026-09-30 08:13:59.106 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:13:59.132 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:13:59.148 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:13:59.339 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 08:13:59.372 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 217.7723ms
+2026-09-30 08:13:59.375 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:13:59.379 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 400 378 application/problem+json; charset=utf-8 272.4544ms
+2026-09-30 08:14:16.647 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:14:16.651 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:14:16.652 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:14:16.657 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 08:14:16.658 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 5.1067ms
+2026-09-30 08:14:16.660 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:14:16.660 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 400 380 application/problem+json; charset=utf-8 13.7464ms
+2026-09-30 08:16:20.560 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:16:20.562 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:16:20.562 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:16:20.592 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 08:16:20.594 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 31.1076ms
+2026-09-30 08:16:20.595 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:16:20.596 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 400 379 application/problem+json; charset=utf-8 36.5146ms
+2026-09-30 08:16:35.484 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:16:35.486 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:16:35.487 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:16:35.489 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 08:16:35.490 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 2.1563ms
+2026-09-30 08:16:35.490 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:16:35.491 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 400 380 application/problem+json; charset=utf-8 7.3983ms
+2026-09-30 08:16:54.782 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:16:54.784 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:16:54.785 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:16:54.787 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 08:16:54.788 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 2.5853ms
+2026-09-30 08:16:54.789 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:16:54.790 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 400 382 application/problem+json; charset=utf-8 7.8277ms
+2026-09-30 08:17:08.949 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:17:08.951 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:17:08.952 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:17:08.954 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 08:17:08.955 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 2.5976ms
+2026-09-30 08:17:08.956 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:17:08.957 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 400 382 application/problem+json; charset=utf-8 7.2134ms
+2026-09-30 08:18:51.064 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:18:51.066 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:18:51.066 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:18:51.078 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 08:18:51.145 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:18:51.223 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:18:51.347 +07:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (DbType = Boolean), @p10='?', @p11='?' (DbType = Boolean), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = DateTime), @p15='?' (DbType = Boolean), @p16='?' (DbType = DateTimeOffset), @p17='?', @p18='?', @p19='?', @p20='?' (DbType = Int32), @p21='?' (DbType = Boolean), @p22='?', @p23='?', @p24='?' (DbType = Boolean), @p25='?', @p26='?', @p27='?' (DbType = Boolean), @p28='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "Archive", "Blocked", "CertificateFrom", "CertificateTo", "ConcurrencyStamp", "CreatedDatetime", "Email", "EmailConfirmed", "FirstName", "FromAD", "LastLoginDatetime", "LastPasswordChangeDatetime", "LastUpdateDatetime", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Notifications", "OwnRequests", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+2026-09-30 08:18:51.365 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Name"
+FROM "AspNetRoles" AS a
+2026-09-30 08:18:51.372 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:18:51.383 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[@p28='?', @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p29='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Boolean), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?', @p17='?', @p18='?', @p19='?' (DbType = Int32), @p20='?' (DbType = Boolean), @p21='?', @p22='?', @p23='?' (DbType = Boolean), @p24='?', @p25='?', @p26='?' (DbType = Boolean), @p27='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "Archive" = @p1, "Blocked" = @p2, "CertificateFrom" = @p3, "CertificateTo" = @p4, "ConcurrencyStamp" = @p5, "CreatedDatetime" = @p6, "Email" = @p7, "EmailConfirmed" = @p8, "FirstName" = @p9, "FromAD" = @p10, "LastLoginDatetime" = @p11, "LastPasswordChangeDatetime" = @p12, "LastUpdateDatetime" = @p13, "LockoutEnabled" = @p14, "LockoutEnd" = @p15, "MiddleName" = @p16, "NormalizedEmail" = @p17, "NormalizedUserName" = @p18, "Notifications" = @p19, "OwnRequests" = @p20, "PasswordHash" = @p21, "PhoneNumber" = @p22, "PhoneNumberConfirmed" = @p23, "SecurityStamp" = @p24, "Surname" = @p25, "TwoFactorEnabled" = @p26, "UserName" = @p27
+WHERE "Id" = @p28 AND "ConcurrencyStamp" = @p29;
+2026-09-30 08:18:51.387 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:18:51.389 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:18:51.391 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@p28='?', @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p29='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Boolean), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?', @p17='?', @p18='?', @p19='?' (DbType = Int32), @p20='?' (DbType = Boolean), @p21='?', @p22='?', @p23='?' (DbType = Boolean), @p24='?', @p25='?', @p26='?' (DbType = Boolean), @p27='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "Archive" = @p1, "Blocked" = @p2, "CertificateFrom" = @p3, "CertificateTo" = @p4, "ConcurrencyStamp" = @p5, "CreatedDatetime" = @p6, "Email" = @p7, "EmailConfirmed" = @p8, "FirstName" = @p9, "FromAD" = @p10, "LastLoginDatetime" = @p11, "LastPasswordChangeDatetime" = @p12, "LastUpdateDatetime" = @p13, "LockoutEnabled" = @p14, "LockoutEnd" = @p15, "MiddleName" = @p16, "NormalizedEmail" = @p17, "NormalizedUserName" = @p18, "Notifications" = @p19, "OwnRequests" = @p20, "PasswordHash" = @p21, "PhoneNumber" = @p22, "PhoneNumberConfirmed" = @p23, "SecurityStamp" = @p24, "Surname" = @p25, "TwoFactorEnabled" = @p26, "UserName" = @p27
+WHERE "Id" = @p28 AND "ConcurrencyStamp" = @p29;
+2026-09-30 08:18:51.399 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__userName_0
+LIMIT 1
+2026-09-30 08:18:51.436 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2026-09-30 08:18:51.444 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 363.3769ms.
+2026-09-30 08:18:51.446 +07:00 [INF] Executing OkObjectResult, writing value of type 'TrainingManagerSecurity.Autentication.Logic.Models.User'.
+2026-09-30 08:18:51.451 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 384.0319ms
+2026-09-30 08:18:51.452 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:18:51.455 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 200 561 application/json; charset=utf-8 391.0371ms
+2026-09-30 08:19:09.045 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:19:09.047 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:19:09.048 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:19:09.050 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 08:19:09.053 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:19:09.059 +07:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2026-09-30 08:19:09.060 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 11.0971ms
+2026-09-30 08:19:09.061 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:19:09.062 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 500 87 application/json 16.6579ms
+2026-09-30 08:19:16.645 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:19:16.683 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:19:16.683 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:19:16.685 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 08:19:16.687 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:19:16.750 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:19:16.753 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (DbType = Boolean), @p10='?', @p11='?' (DbType = Boolean), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = DateTime), @p15='?' (DbType = Boolean), @p16='?' (DbType = DateTimeOffset), @p17='?', @p18='?', @p19='?', @p20='?' (DbType = Int32), @p21='?' (DbType = Boolean), @p22='?', @p23='?', @p24='?' (DbType = Boolean), @p25='?', @p26='?', @p27='?' (DbType = Boolean), @p28='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "Archive", "Blocked", "CertificateFrom", "CertificateTo", "ConcurrencyStamp", "CreatedDatetime", "Email", "EmailConfirmed", "FirstName", "FromAD", "LastLoginDatetime", "LastPasswordChangeDatetime", "LastUpdateDatetime", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Notifications", "OwnRequests", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+2026-09-30 08:19:16.755 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Name"
+FROM "AspNetRoles" AS a
+2026-09-30 08:19:16.756 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:19:16.760 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[@p28='?', @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p29='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Boolean), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?', @p17='?', @p18='?', @p19='?' (DbType = Int32), @p20='?' (DbType = Boolean), @p21='?', @p22='?', @p23='?' (DbType = Boolean), @p24='?', @p25='?', @p26='?' (DbType = Boolean), @p27='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "Archive" = @p1, "Blocked" = @p2, "CertificateFrom" = @p3, "CertificateTo" = @p4, "ConcurrencyStamp" = @p5, "CreatedDatetime" = @p6, "Email" = @p7, "EmailConfirmed" = @p8, "FirstName" = @p9, "FromAD" = @p10, "LastLoginDatetime" = @p11, "LastPasswordChangeDatetime" = @p12, "LastUpdateDatetime" = @p13, "LockoutEnabled" = @p14, "LockoutEnd" = @p15, "MiddleName" = @p16, "NormalizedEmail" = @p17, "NormalizedUserName" = @p18, "Notifications" = @p19, "OwnRequests" = @p20, "PasswordHash" = @p21, "PhoneNumber" = @p22, "PhoneNumberConfirmed" = @p23, "SecurityStamp" = @p24, "Surname" = @p25, "TwoFactorEnabled" = @p26, "UserName" = @p27
+WHERE "Id" = @p28 AND "ConcurrencyStamp" = @p29;
+2026-09-30 08:19:16.764 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:19:16.765 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:19:16.767 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@p28='?', @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p29='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Boolean), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?', @p17='?', @p18='?', @p19='?' (DbType = Int32), @p20='?' (DbType = Boolean), @p21='?', @p22='?', @p23='?' (DbType = Boolean), @p24='?', @p25='?', @p26='?' (DbType = Boolean), @p27='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "Archive" = @p1, "Blocked" = @p2, "CertificateFrom" = @p3, "CertificateTo" = @p4, "ConcurrencyStamp" = @p5, "CreatedDatetime" = @p6, "Email" = @p7, "EmailConfirmed" = @p8, "FirstName" = @p9, "FromAD" = @p10, "LastLoginDatetime" = @p11, "LastPasswordChangeDatetime" = @p12, "LastUpdateDatetime" = @p13, "LockoutEnabled" = @p14, "LockoutEnd" = @p15, "MiddleName" = @p16, "NormalizedEmail" = @p17, "NormalizedUserName" = @p18, "Notifications" = @p19, "OwnRequests" = @p20, "PasswordHash" = @p21, "PhoneNumber" = @p22, "PhoneNumberConfirmed" = @p23, "SecurityStamp" = @p24, "Surname" = @p25, "TwoFactorEnabled" = @p26, "UserName" = @p27
+WHERE "Id" = @p28 AND "ConcurrencyStamp" = @p29;
+2026-09-30 08:19:16.769 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__userName_0
+LIMIT 1
+2026-09-30 08:19:16.770 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2026-09-30 08:19:16.771 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 85.3437ms.
+2026-09-30 08:19:16.772 +07:00 [INF] Executing OkObjectResult, writing value of type 'TrainingManagerSecurity.Autentication.Logic.Models.User'.
+2026-09-30 08:19:16.773 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 88.585ms
+2026-09-30 08:19:16.774 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:19:16.775 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 200 561 application/json; charset=utf-8 129.5267ms
+2026-09-30 08:25:20.650 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/ - null null
+2026-09-30 08:25:20.666 +07:00 [WRN] requestId: 0HNOUI0DJL1SD:00000001, previousRequestId: no previous request id, message: DownstreamRouteFinderMiddleware setting pipeline errors. IDownstreamRouteFinder returned Error Code: UnableToFindDownstreamRouteError Message: Failed to match Route configuration for upstream path: /, verb: GET.
+2026-09-30 08:25:20.668 +07:00 [WRN] requestId: 0HNOUI0DJL1SD:00000001, previousRequestId: no previous request id, message: Error Code: UnableToFindDownstreamRouteError Message: Failed to match Route configuration for upstream path: /, verb: GET. errors found in ResponderMiddleware. Setting error response for request path:/, request method: GET
+2026-09-30 08:25:20.671 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/ - 404 0 null 21.1372ms
+2026-09-30 08:28:13.342 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:28:13.344 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:28:13.345 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:28:13.352 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 08:28:13.374 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:28:13.376 +07:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2026-09-30 08:28:13.376 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 30.46ms
+2026-09-30 08:28:13.377 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:28:13.377 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 500 87 application/json 35.0893ms
+2026-09-30 08:28:23.367 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/users/true - application/json; charset=utf-8 null
+2026-09-30 08:28:23.368 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:28:23.369 +07:00 [INF] Route matched with {action = "SaveUser", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SaveUser(TrainingManagerSecurity.Autentication.Logic.Models.User, Boolean) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 08:28:23.372 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 08:28:23.373 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:28:23.435 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:28:23.473 +07:00 [INF] Executed DbCommand (32ms) [Parameters=[@p0='?', @p1='?' (DbType = Int32), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (DbType = DateTime), @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?' (DbType = Boolean), @p10='?', @p11='?' (DbType = Boolean), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = DateTime), @p15='?' (DbType = Boolean), @p16='?' (DbType = DateTimeOffset), @p17='?', @p18='?', @p19='?', @p20='?' (DbType = Int32), @p21='?' (DbType = Boolean), @p22='?', @p23='?', @p24='?' (DbType = Boolean), @p25='?', @p26='?', @p27='?' (DbType = Boolean), @p28='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "Archive", "Blocked", "CertificateFrom", "CertificateTo", "ConcurrencyStamp", "CreatedDatetime", "Email", "EmailConfirmed", "FirstName", "FromAD", "LastLoginDatetime", "LastPasswordChangeDatetime", "LastUpdateDatetime", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "Notifications", "OwnRequests", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27, @p28);
+2026-09-30 08:28:23.477 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Name"
+FROM "AspNetRoles" AS a
+2026-09-30 08:28:23.478 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:28:23.481 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@p28='?', @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p29='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Boolean), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?', @p17='?', @p18='?', @p19='?' (DbType = Int32), @p20='?' (DbType = Boolean), @p21='?', @p22='?', @p23='?' (DbType = Boolean), @p24='?', @p25='?', @p26='?' (DbType = Boolean), @p27='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "Archive" = @p1, "Blocked" = @p2, "CertificateFrom" = @p3, "CertificateTo" = @p4, "ConcurrencyStamp" = @p5, "CreatedDatetime" = @p6, "Email" = @p7, "EmailConfirmed" = @p8, "FirstName" = @p9, "FromAD" = @p10, "LastLoginDatetime" = @p11, "LastPasswordChangeDatetime" = @p12, "LastUpdateDatetime" = @p13, "LockoutEnabled" = @p14, "LockoutEnd" = @p15, "MiddleName" = @p16, "NormalizedEmail" = @p17, "NormalizedUserName" = @p18, "Notifications" = @p19, "OwnRequests" = @p20, "PasswordHash" = @p21, "PhoneNumber" = @p22, "PhoneNumberConfirmed" = @p23, "SecurityStamp" = @p24, "Surname" = @p25, "TwoFactorEnabled" = @p26, "UserName" = @p27
+WHERE "Id" = @p28 AND "ConcurrencyStamp" = @p29;
+2026-09-30 08:28:23.483 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__user_Id_0
+LIMIT 1
+2026-09-30 08:28:23.484 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2026-09-30 08:28:23.486 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@p28='?', @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime), @p4='?' (DbType = DateTime), @p5='?', @p29='?', @p6='?' (DbType = DateTime), @p7='?', @p8='?' (DbType = Boolean), @p9='?', @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTime), @p12='?' (DbType = DateTime), @p13='?' (DbType = DateTime), @p14='?' (DbType = Boolean), @p15='?' (DbType = DateTimeOffset), @p16='?', @p17='?', @p18='?', @p19='?' (DbType = Int32), @p20='?' (DbType = Boolean), @p21='?', @p22='?', @p23='?' (DbType = Boolean), @p24='?', @p25='?', @p26='?' (DbType = Boolean), @p27='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "Archive" = @p1, "Blocked" = @p2, "CertificateFrom" = @p3, "CertificateTo" = @p4, "ConcurrencyStamp" = @p5, "CreatedDatetime" = @p6, "Email" = @p7, "EmailConfirmed" = @p8, "FirstName" = @p9, "FromAD" = @p10, "LastLoginDatetime" = @p11, "LastPasswordChangeDatetime" = @p12, "LastUpdateDatetime" = @p13, "LockoutEnabled" = @p14, "LockoutEnd" = @p15, "MiddleName" = @p16, "NormalizedEmail" = @p17, "NormalizedUserName" = @p18, "Notifications" = @p19, "OwnRequests" = @p20, "PasswordHash" = @p21, "PhoneNumber" = @p22, "PhoneNumberConfirmed" = @p23, "SecurityStamp" = @p24, "Surname" = @p25, "TwoFactorEnabled" = @p26, "UserName" = @p27
+WHERE "Id" = @p28 AND "ConcurrencyStamp" = @p29;
+2026-09-30 08:28:23.493 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."AccessFailedCount", a."Archive", a."Blocked", a."CertificateFrom", a."CertificateTo", a."ConcurrencyStamp", a."CreatedDatetime", a."Email", a."EmailConfirmed", a."FirstName", a."FromAD", a."LastLoginDatetime", a."LastPasswordChangeDatetime", a."LastUpdateDatetime", a."LockoutEnabled", a."LockoutEnd", a."MiddleName", a."NormalizedEmail", a."NormalizedUserName", a."Notifications", a."OwnRequests", a."PasswordHash", a."PhoneNumber", a."PhoneNumberConfirmed", a."SecurityStamp", a."Surname", a."TwoFactorEnabled", a."UserName"
+FROM "AspNetUsers" AS a
+WHERE a."UserName" = @__userName_0
+LIMIT 1
+2026-09-30 08:28:23.495 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a0."Name"
+FROM "AspNetUserRoles" AS a
+INNER JOIN "AspNetRoles" AS a0 ON a."RoleId" = a0."Id"
+WHERE a."UserId" = @__userId_0
+2026-09-30 08:28:23.496 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 123.6955ms.
+2026-09-30 08:28:23.497 +07:00 [INF] Executing OkObjectResult, writing value of type 'TrainingManagerSecurity.Autentication.Logic.Models.User'.
+2026-09-30 08:28:23.498 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity) in 127.3213ms
+2026-09-30 08:28:23.498 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.SaveUser (TrainingManagerSecurity)'
+2026-09-30 08:28:23.499 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/users/true - 200 642 application/json; charset=utf-8 131.8457ms
+2026-09-30 09:15:18.533 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/ - null null
+2026-09-30 09:15:18.536 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/ - 301 0 null 3.1302ms
+2026-09-30 09:15:18.539 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/index.html - null null
+2026-09-30 09:15:18.596 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/index.html - 200 null text/html;charset=utf-8 56.6733ms
+2026-09-30 09:15:18.603 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/swagger-ui.css - null null
+2026-09-30 09:15:18.603 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/swagger-ui-standalone-preset.js - null null
+2026-09-30 09:15:18.603 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/swagger-ui-bundle.js - null null
+2026-09-30 09:15:18.611 +07:00 [INF] The file /swagger-ui.css was not modified
+2026-09-30 09:15:18.611 +07:00 [INF] The file /swagger-ui-bundle.js was not modified
+2026-09-30 09:15:18.611 +07:00 [INF] The file /swagger-ui-standalone-preset.js was not modified
+2026-09-30 09:15:18.612 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/swagger-ui.css - 304 null text/css 8.9997ms
+2026-09-30 09:15:18.612 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/swagger-ui-bundle.js - 304 null text/javascript 9.1624ms
+2026-09-30 09:15:18.613 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/swagger-ui-standalone-preset.js - 304 null text/javascript 9.7416ms
+2026-09-30 09:15:18.728 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/docs/v1/UsersApi - null null
+2026-09-30 09:15:18.748 +07:00 [INF] Start processing HTTP request GET http://localhost:8000/swagger/v1/swagger.json
+2026-09-30 09:15:18.751 +07:00 [INF] Sending HTTP request GET http://localhost:8000/swagger/v1/swagger.json
+2026-09-30 09:15:18.773 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/v1/swagger.json - null null
+2026-09-30 09:15:18.844 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 71.1513ms
+2026-09-30 09:15:18.848 +07:00 [INF] Received HTTP response headers after 95.0607ms - 200
+2026-09-30 09:15:18.850 +07:00 [INF] End processing HTTP request after 101.9238ms - 200
+2026-09-30 09:15:18.941 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/docs/v1/UsersApi - 200 null null 212.3618ms
+2026-09-30 09:15:28.999 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/users - null null
+2026-09-30 09:15:29.003 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.UserController.Get (TrainingManagerSecurity)'
+2026-09-30 09:15:29.014 +07:00 [INF] Route matched with {action = "Get", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(TrainingManagerSecurity.Controllers.QueryParams.UserQueryParams) on controller TrainingManagerSecurity.Controllers.UserController (TrainingManagerSecurity).
+2026-09-30 09:15:29.020 +07:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2026-09-30 09:15:29.022 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.UserController.Get (TrainingManagerSecurity) in 6.7212ms
+2026-09-30 09:15:29.023 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.UserController.Get (TrainingManagerSecurity)'
+2026-09-30 09:15:29.023 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/users - 400 334 application/problem+json; charset=utf-8 24.8271ms
+2026-09-30 09:15:43.834 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/docs/v1/RolesApi - null null
+2026-09-30 09:15:43.837 +07:00 [INF] Start processing HTTP request GET http://localhost:8000/swagger/v1/swagger.json
+2026-09-30 09:15:43.838 +07:00 [INF] Sending HTTP request GET http://localhost:8000/swagger/v1/swagger.json
+2026-09-30 09:15:43.840 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/swagger/v1/swagger.json - null null
+2026-09-30 09:15:43.849 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 8.1153ms
+2026-09-30 09:15:43.850 +07:00 [INF] Received HTTP response headers after 10.2112ms - 200
+2026-09-30 09:15:43.854 +07:00 [INF] End processing HTTP request after 16.7683ms - 200
+2026-09-30 09:15:43.871 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/swagger/docs/v1/RolesApi - 200 null null 37.5779ms
+2026-09-30 09:15:48.788 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/roles - null null
+2026-09-30 09:15:48.793 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity)'
+2026-09-30 09:15:48.798 +07:00 [INF] Route matched with {action = "Get", controller = "Role"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[System.String]] Get(TrainingManagerSecurity.Autentication.Logic.RolesStore.IRoleStore) on controller TrainingManagerSecurity.Controllers.RoleController (TrainingManagerSecurity).
+2026-09-30 09:15:48.799 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 09:15:48.820 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Name"
+FROM "AspNetRoles" AS a
+2026-09-30 09:15:48.822 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 22.1506ms.
+2026-09-30 09:15:48.823 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-09-30 09:15:48.824 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity) in 25.2051ms
+2026-09-30 09:15:48.826 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity)'
+2026-09-30 09:15:48.826 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/roles - 200 2 application/json; charset=utf-8 37.9217ms
+2026-09-30 09:15:50.092 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/roles - null null
+2026-09-30 09:15:50.096 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity)'
+2026-09-30 09:15:50.097 +07:00 [INF] Route matched with {action = "Get", controller = "Role"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[System.String]] Get(TrainingManagerSecurity.Autentication.Logic.RolesStore.IRoleStore) on controller TrainingManagerSecurity.Controllers.RoleController (TrainingManagerSecurity).
+2026-09-30 09:15:50.099 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 09:15:50.100 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Name"
+FROM "AspNetRoles" AS a
+2026-09-30 09:15:50.103 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 4.0309ms.
+2026-09-30 09:15:50.104 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-09-30 09:15:50.105 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity) in 6.7675ms
+2026-09-30 09:15:50.106 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity)'
+2026-09-30 09:15:50.106 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/roles - 200 2 application/json; charset=utf-8 13.7865ms
+2026-09-30 09:15:56.192 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/roles - application/json-patch+json 8
+2026-09-30 09:15:56.197 +07:00 [INF] CORS policy execution successful.
+2026-09-30 09:15:56.198 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity)'
+2026-09-30 09:15:56.203 +07:00 [INF] Route matched with {action = "Create", controller = "Role"}. Executing controller action with signature System.Threading.Tasks.Task Create(TrainingManagerSecurity.Autentication.Logic.RolesStore.IRoleStore, System.String) on controller TrainingManagerSecurity.Controllers.RoleController (TrainingManagerSecurity).
+2026-09-30 09:15:56.206 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 09:15:56.209 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2026-09-30 09:15:56.260 +07:00 [INF] Executed DbCommand (35ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetRoles" ("Id", "ConcurrencyStamp", "Name", "NormalizedName")
+VALUES (@p0, @p1, @p2, @p3);
+2026-09-30 09:15:56.264 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 57.5087ms.
+2026-09-30 09:15:56.265 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity) in 60.4202ms
+2026-09-30 09:15:56.265 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity)'
+2026-09-30 09:15:56.266 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/roles - 200 0 null 74.1812ms
+2026-09-30 09:16:10.408 +07:00 [INF] Request starting HTTP/1.1 POST http://localhost:8000/roles - application/json-patch+json 7
+2026-09-30 09:16:10.412 +07:00 [INF] CORS policy execution successful.
+2026-09-30 09:16:10.412 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity)'
+2026-09-30 09:16:10.413 +07:00 [INF] Route matched with {action = "Create", controller = "Role"}. Executing controller action with signature System.Threading.Tasks.Task Create(TrainingManagerSecurity.Autentication.Logic.RolesStore.IRoleStore, System.String) on controller TrainingManagerSecurity.Controllers.RoleController (TrainingManagerSecurity).
+2026-09-30 09:16:10.415 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 09:16:10.417 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."ConcurrencyStamp", a."Name", a."NormalizedName"
+FROM "AspNetRoles" AS a
+WHERE a."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2026-09-30 09:16:10.452 +07:00 [INF] Executed DbCommand (34ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetRoles" ("Id", "ConcurrencyStamp", "Name", "NormalizedName")
+VALUES (@p0, @p1, @p2, @p3);
+2026-09-30 09:16:10.456 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 40.4948ms.
+2026-09-30 09:16:10.457 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity) in 42.3669ms
+2026-09-30 09:16:10.458 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.RoleController.Create (TrainingManagerSecurity)'
+2026-09-30 09:16:10.458 +07:00 [INF] Request finished HTTP/1.1 POST http://localhost:8000/roles - 200 0 null 49.9172ms
+2026-09-30 09:16:18.085 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:8000/roles - null null
+2026-09-30 09:16:18.087 +07:00 [INF] Executing endpoint 'TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity)'
+2026-09-30 09:16:18.088 +07:00 [INF] Route matched with {action = "Get", controller = "Role"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Collections.Generic.IEnumerable`1[System.String]] Get(TrainingManagerSecurity.Autentication.Logic.RolesStore.IRoleStore) on controller TrainingManagerSecurity.Controllers.RoleController (TrainingManagerSecurity).
+2026-09-30 09:16:18.090 +07:00 [INF] Executing action method TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity) - Validation state: "Valid"
+2026-09-30 09:16:18.092 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Name"
+FROM "AspNetRoles" AS a
+2026-09-30 09:16:18.093 +07:00 [INF] Executed action method TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.4677ms.
+2026-09-30 09:16:18.094 +07:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-09-30 09:16:18.095 +07:00 [INF] Executed action TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity) in 5.3219ms
+2026-09-30 09:16:18.096 +07:00 [INF] Executed endpoint 'TrainingManagerSecurity.Controllers.RoleController.Get (TrainingManagerSecurity)'
+2026-09-30 09:16:18.096 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:8000/roles - 200 18 application/json; charset=utf-8 11.5623ms
